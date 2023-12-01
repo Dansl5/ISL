@@ -1,0 +1,358 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage{graphicx} % Required for inserting images
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage[lablefont=bf,skip=5pt, font=small]{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+
+\usepackage{amsmath}
+
+\title{A study on the relevance of accounting information for the market value of companies.}
+
+
+\author{Dans Lismanis u645786 \\ Rudolfs Jansons u705794\\ Maxim de Vries u779793\\ Julia van den Brink u765536 }
+
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+\newpage
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Introduction and Problem definition}
+The value of publicly traded companies is determined by the supply and demand of investors which is formed by the expectations of investors about their future performance. One of the main sources of these expectations is accounting information, particularly annual reports. The Federal Accounting Standards Board (FASB) is interested in understanding how important is accounting information for investors to calculate the market value of companies. So, the FASB has given two main questions:
+
+After the stock market downturn of 2000, did investors change their use of accounting information in valuing companies? Was there a change between which measure is more relevant between reported profits and the book value of equity capital? How much do incidental profits/losses, negative profits, and research and development expenses affect the relevance of reported profits?
+
+To get a clear view of the data that we use for our models, we have plotted the average market value, profit and book value per year (tables can be found in the appendices). Looking at market value, it can be seen that from 1994 till 1999 it is increasing but between 2000 and 2002 the market value declined, after 2002 it is increasing again. The average profit per year between 1993 and 2000 is increasing with small drops in some years. However, from 2000 to 2001 the average falls below 0 after a huge drop. In 2003, the average profit has increased again to almost 150, which is higher than it has been before. Looking at the graph of the mean book value, it is very similar to the graph of profit. These graphs make it clear that the crash of 2000 has made significant changes in the numbers of the firms.
+
+To answer these questions we used the methods of ordinary least squares and fixed effects regression models on our data. In section 3 (argumentation) it is possible to see the technical details of our models, but a simple and understandable summary of our results is made in section 2 (Conclusions and Recommendations).
+
+\newpage
+
+\section{Conclusions and Recommendations}
+\subsection{Crisis of 2000}
+From the results of our research, it can be seen that investors perceived the importance of profits decreased after the year 2000 which coincides with the crises, this trend did not stop and continued even after the year 2001. Furthermore, we can see that the importance of a firm’s profits and its book value has become much more similar than before.  
+
+
+
+
+
+
+\subsection{Incidental Profits and Losses}
+After closely examining the results we can conclude that incidental profits/losses are not as important aspect for Investors as regular profits are, in our opinion, it is because incidental profits/losses are uncertain for future profits so it is irrelevant to the expectations of firms future value.  Also, it is possible to deduce that the higher profits of a firm the less relevant the effect of incidental profits/losses is for investors. 
+
+
+\subsection{Negative Profits}
+Our data has shown that when the investor knows whether a company has negative profits or not, the importance of both the book value and profits increases significantly. This can be explained by the fact that now they are a more precise and better indicator of how a firm is doing economically. 
+
+\subsection{Research and Development}
+After inspecting the result of the research and development cost model it is possible to deduce that investors see the research and development cost as a positive factor for the firm's expected market value.  Meaning that investors clearly recognize the need for research and development for further growth. Also, investors see research and development costs as more relevant factors compared to profits.
+
+\newpage
+\section{Argumentation}
+\subsection{Abbreviations}
+\begin{description}
+\item[FE] Fixed effects
+\item[OLS] Ordinary least squares
+\end{description}
+
+ \subsection{Variables}
+Used abbreviations for variables in our regression:
+\begin{description}
+ \item[MKVAL] The market value of the company 3 months after the end of the fiscal year.
+ \item[IB] Profits excluding incidental profits/losses.
+ \item[XI] Incidental profits/losses.
+ \item[AT] Total assets of the firm.
+ \item[LT] Total liabilities.
+ \item[XRD] Research and development costs.
+ \item[PROFIT] The profits reported by a company equal IB + XI.
+ \item[BOOK\textunderscore VALUE] The balance of assets and liabilities, so AT - LT.
+ \item[XiNot0] Dummy variable that assigns 1 when the incidental profits/losses differ from 0 .
+ \item[PrXiNot0] Interaction term between dummy variable XiNot0 and profit.
+ \item[Dum\textunderscore neg\textunderscore Prof] Dummy variable that assigns 1 when profit is negative and 0 when profit in non-negative.
+ \item[Prdum\textunderscore neg\textunderscore Prof] interaction variable between profit and the dummy variable  Dum\textunderscore neg\textunderscore Prof.
+\end{description}
+
+\subsection{Assumptions}
+We used OLS as a base model, to do further comparisons with the FE model.
+We assumed assumptions 1-5 of  ordinary least squares
+\begin{enumerate}
+    \item \textbf{Linearity:} This assumption indicates, that the response variable is linearly dependent on the explanatory variables. This implies the fact that the explanatory variable has the same effect on the response variable across all of the values of the response variable.
+    \item \textbf{Independence and identical distribution:} Observations in the dataset are independent of each other and identically distributed. Meaning that the values of explanatory variables in one observation are not influenced by the values of explanatory variables in other observations.
+    \item \textbf{Homoscedasticity:} The variance of the error term is constant across all values of explanatory variables.
+    \item \textbf{Normality:} The errors are normally distributed. 
+    \item \textbf{No multicollinearity:} None of the explanatory variables are perfectly linear among themselves. Meaning that the explanatory variables are not highly correlated.
+\end{enumerate}
+If these assumptions hold then our estimated Betas BLUE, is the best (minimum-variance) linear unbiased estimator from Gauss–Markov theorem. Also, OLS is a good base model, because it is the standard model for looking at linear models and most people in the field will know it.\\
+
+For OLS, linearity means: $Y_{it}=\beta_0 +\beta_1X_{1it}+...+ u_i$. If we call $\beta_0 =\alpha$, which is possible as $\beta_0$ can be interpreted as the intercept, which is constant over all observations, it is easy to see the difference between the linearity assumption in OLS and FE. So for OLS:  $Y_{it}=\alpha +\beta_1X_{1it}+...+ u_i$. 
+
+For the FE model, we also assume the following:
+\begin{enumerate}
+    \item We change the linearity assumption of OLS by assuming that the companies have a fixed effect. By using this method, we replace the intercept of OLS, $\alpha$ to $\alpha_i$ which is different for every company but fixed for the different years of a company.
+    \item The error term $u_{it}$ has conditional mean zero, $E[u_{it}|X_{i1}, X_{i2}, ..., X_{iT}]=0$
+    \item $(X_{i1}, X_{i2}, ..., X_{iT}, u_{i1}, ..., u_{iT})$, $i=1, 2, ..., n$ are i.i.d. draws from their joint distribution. This assumes that the data across entities, in our case companies, is i.i.d. but it is not needed that the data within that entity is independent. This is called autocorrelation.
+\end{enumerate}
+
+\subsection{Methods used}
+If we look at the assumptions of OLS, it is not very likely that they all hold for our data set. Especially the assumption that the data is independent and identically distributed. Using OLS likely creates bias. In order to reduce the bias, we used fixed regression in our model. Fixed regression is a method that is often used when you are dealing with panel data. 
+
+Each observation in panel data is indexed with 2 different things, a firm i in a time period t. In the Fixed Regression model, we first look at what regressors are independent on time, so in this case, which regressors do not change within a firm over the years, called time-invariant. We collect these in $\alpha_i$, the fixed effect. This is a variable that is no longer dependent over time. We then get this model:
+\[Y_{it}=\beta_1X_{1it}+ ... + \alpha_i +u_{it}\] 
+We then will demean the dependent and independent variables within each firm by averaging each term for one firm but across all years. This gives us $\bar Y_i$. In our case the average market value of the firm across the years. \[\bar Y_i=\beta_1 \bar X_{1i}+... +\bar \alpha_i +\bar u_i\]
+Here $\bar Y_i= \frac{1}{T} \sum_{t=1}^T Y_{it}$, \quad $\bar X_i = \frac{1}{T}\sum_{t=1}^T X_{it}$, and \quad $\bar u_i= \frac{1}{T} \sum_{t=1}^T u_{it}$.
+
+After that, we will subtract $\bar Y_i$ from each value. Since $\alpha_i$ is independent over time, its average $\bar alpha_i$ is also equal to $\alpha_i$. Our new model is:
+\[(Y_{it}-\bar Y_i)=\beta_1(X_{1it}- \bar X_{1i})+ ...  +(u_{it}- \bar u_i)\]
+
+Since the $\alpha_i$ term does not change, there is no fixed effect term left in the above equation. So now we can estimate using OLS.
+
+\subsection{Data}
+This study was carried out with data about American companies. The data consists of the variables listed in 3.1 gathered during the years of 1993-2003. We obtained it from COMPUSTAT. Not every variable was available for a company for each year. In this case we dropped all the data for the year if one or more variables were missing for that company. This might create bias however we are not going to research this bias in this study. The data consist of 2762 different companies with data gathered over 11 years. So without removing data points, we have 30382 observations.
+\subsection{Model for the crash of 2000}
+\[MKVAL_{it}=\beta_{0}+\beta_{PROFIT}PROFIT_{it}+\beta_{BOOK\_VALUE}BOOK\_VALUE_{it}+\epsilon_{it}\]
+
+The first objective of the research was to investigate the effect of the stock market crash in 2000, specifically how it affected the investor’s opinion on how significant are the book value and the profits of a firm in determining its value. To answer this question we ran OLS and fixed effects, FE further,  regressions for market value on profit, where profit is the sum of the profits excluding incidental profits/losses plus incidental profits/losses and on the book value of the firm, where it is the difference between the total assets of the firm and total liabilities. 
+First, we ran these regressions for all the years together to get a baseline model. Then we looked at the data from before (1993 to 1999) and after (2000 to 2003) the crash of 2000 separately, to see how the significance was changed by the crash. For the sake of completeness, we also ran the two regressions excluding the year 2000, as during the crash it is possible that unpredictable decisions are being made by the investors, due to the uncertainty of the future. The results of the baseline model can be seen in table \ref{1}, and the other 2 regressions in table \ref{2}. We can see that OLS estimates for the coefficient of profit, which can be seen as the perceived importance of profit to a company's market value, fall after the year 2000. If we compare these results with the regression that excluded 2000, we see that the coefficients for profit and book value before 2000 have stayed equal, which is logical as we have used the same observations. The coefficient for profit and book value after 2000 have both decreased. This means that profit and book value in 2000 were more relevant than in the years 2001, 2002, and 2003. So the crash has decreased the relevance of profit and book value on market value, but decreased even more from 2001 on wards. For the FE regression, we can make some similar conclusions as with the OLS regression model, however, if we look at the model that excluded the year 2000, the coefficient of book value increased compared to the model that included 2000.
+
+\newpage
+\subsection{Model for incidental Profits and Losses}
+
+\begin{equation}
+\begin{split}
+MKVAL_{it} = & \beta_{0} + \beta_{\text{PROFIT}} \text{PROFIT}_{it} + \beta_{\text{BOOK\_VALUE}} \text{BOOK\_VALUE}_{it} \\
+          & + \beta_{\text{XiNot0}} \text{XiNot0}_{it} \\
+          & + \beta_{\text{PrXiNot0}} \text{PrXiNot0}_{it} + \epsilon_{it}
+\end{split}
+\end{equation}\
+
+To determine the effect of Incidental profits and losses on the market value of the firm, we decided to run four new regressions where we once again performed an OLS and fixed effects regressions of market value on book value and profit, but, now we also introduce  a new variable for incidental profits called XiNot0 and it indicates whether the incidental profits/losses are different from 0, thereby showing that a firm has incidental profits or losses. An interaction term between the new dummy variable and profit is introduced as well. This is so that we can observe if there is a joint effect between profit and incidental profit/losses. After regressing  we get the following results see table \ref{3}. We can see that in comparison to the first model see table \ref{1}, the estimated coefficient for profits is  higher this leads to the conclusion that incidental profits/losses are not as important of a variable as regular profits in the OLS and FE regression, the reason being that when investor know something more about incidental profits/losses he attaches more value to profits, because incidental profits/loses are uncertain for future profits. We can also see that the coefficient estimates for interaction term are negative in the FE model and the estimate of incidental losses/profits coefficient is positive meaning the higher the profits the less investor cares if firm has incidental profits/losses, also the estimates of OLS are insignificant so it is irrational to compere or make conclusions from this model. See table  \ref{3}. 
+
+
+\subsection{Model for Negative Profits}
+
+\begin{align*}
+    MKVAL_{it} &= \beta_{0} + \beta_{PROFIT}PROFIT_{it} \\
+    &\quad + \beta_{BOOK\_VALUE}BOOK\_VALUE_{it} + \beta_{Dum\_neg\_Prof}Dum\_neg\_Prof_{it} \\    &+ \beta_{Prdum\_neg\_Prof}Prdum\_neg\_Prof_{it} + \epsilon_{it}
+\end{align*}
+
+We were tasked with investigating the impact of negative profits on the market value of companies. To do this we created a dummy variable called Dum\_ neg\_ Prof which takes the value 1 if the profit of the company is less than zero, and 0 else. Then we created an interaction term with variables PROFIT and the new dummy variable introduced, we denote this Prdum\_neg\_Prof. The interaction term is created to see the impact of negative profits on the market value, as we expect small losses to have less of an impact than larger ones. Then to see the effect of negative profits we regress market value on Dum\_ neg\_ Prof, the interaction term, profits, and market value. The coefficient of both Dum\_ neg\_ Prof and its intercept with profit indicates the difference in market value when profit is positive and when profits are negative. These regression results can be seen in table \ref{4}. It can be seen that the estimated coefficient of the dummy variable without the interaction term in the regression is not significant at even a 10\% significance level. After the introduction of the intercept, the dummy variable becomes significant and also positive in both OLS and  FE. This might indicate the fact that negative profits positively impact a firm's market value, furthermore, the coefficient of the intercept is negative, but in this case, the profit is negative as well, which also leads to the same conclusion. Although this seems counterintuitive, this can be explained by the fact that the market value is always a positive value. Then if a firm has negative profit then the estimated importance must be negative. When comparing the estimates of the regression with both the dummy and the intercept to the baseline model shown in table \ref{1}, the OLS and FE estimates of book value and profits increase 
+
+
+\subsection{Model for Research and Development }
+\[MKVAL_{it}=\beta_{0}+\beta_{PROFIT}PROFT_{it}+\beta_{BOOK\_VALUE}BOOK\_VALUE_{it}+\beta_{XRD}XRD_{it}+\epsilon_{it}\]
+\[MKVAL_{it}=\beta_{0}+\beta_{PROFIT}PROFIT_{it}+\beta_{BOOK\_VALUE}BOOK\_VALUE_{it}+\epsilon_{it}\]
+
+To see the impact of the Research and Development (R\&D)  costs of a firm on its market value we once again perform an OLS and fixed effects  regressions on market value on profit and book value, as defined above, but now also the research and development costs are included as a regressor. However, since there is a lot of data missing for the R\&D costs we can not compare the estimates of this regression to the original one, where market value is regressed just on profit and book value. To alleviate this problem we decided to make the data sample sizes of both regressions the same. We first run the regression of market value on all 3 regressors, then the sample data is saved and used for the regression of market value on just profits and book value. Now since both of the sample sizes are the same, we can use these 4 regressions to compare their estimated coefficients and make conclusions. After comparing the result of the regression with and without Research and development (see table \ref{5}) we can see that the relevance of both profits and book value of the firms decrease in both OLS and FE when the explanatory variable XRD for investments in Research and Development is introduced. The coefficient of XRD is significantly larger than those of profit and book value meaning that investors clearly recognize the need of research and development for further growth. Since the estimated coefficient is positive, investing in R\&D increases the firm's market value. When comparing the two models (\ref{5}) it can also be seen that $R_{adjusted}^2$ increases, especially in the fixed effects regression, so the predictive power of the regression is improved.
+\newpage
+\section{Bibliography}
+1. Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2.3. https://CRAN.R-project.org/package=stargazer \newline
+
+2. Nathan Wozny. (2015, September 8). Fixed effects in panel data [Video]. YouTube. \newline
+https://www.youtube.com/watch?v=J9UEYUXi6lY \newline
+
+3. Schmelzer, C. H. M. a. a. G. a. M. (2020, September 15). 10.5 The Fixed Effects Regression Assumptions and Standard Errors for Fixed Effects Regression | Introduction to Econometrics with R. https://www.econometrics-with-r.org/10-5-tferaaseffer.html \newline
+
+\newpage
+\section{Appendices}
+
+These tables were generated in r with the package stargazer \textsuperscript{1}.
+\begin{table}[!htbp] \centering
+\caption{}
+\label{1}
+\begin{tabular}{@{\extracolsep{5pt}}lcc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& \multicolumn{2}{c}{\textit{Dependent variable:}} \\
+\cline{2-3}
+\\[-1.8ex] & \multicolumn{2}{c}{MKVAL} \\
+& OLS & FE \\
+\\[-1.8ex] & (1) & (2)\\
+\hline \\[-1.8ex]
+PROFIT & 3.386$^{***}$ & 1.645$^{***}$ \\
+& (0.064) & (0.054) \\
+& & \\
+BOOK\_VALUE & 3.046$^{***}$ & 2.013$^{***}$ \\
+& (0.019) & (0.024) \\
+& & \\
+Constant & 150.276$^{**}$ & \\
+& (64.851) & \\
+& & \\
+\hline \\[-1.8ex]
+Observations & 24,639 & 24,639 \\
+R$^{2}$ & 0.602 & 0.269 \\
+Adjusted R$^{2}$ & 0.602 & 0.178 \\
+\hline
+\hline \\[-1.8ex]
+\textit{Note:} & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{2} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{6}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-7} 
+\\[-1.8ex] & \multicolumn{6}{c}{MKVAL} \\ 
+& \multicolumn{2}{c}{data before crash} & \multicolumn{2}{c}{data after crash(2000)}  & \multicolumn{2}{c}{data after crash(2001)}      \\
+ &  OLS & FE & OLS & FE & OLS & FE \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
+\hline \\[-1.8ex] 
+ PROFIT & 10.494$^{***}$ & 8.622$^{***}$ & 2.571$^{***}$ & 0.634$^{***}$ & 1.933$^{***}$ & 0.108$^{***}$ \\ 
+  & (0.182) & (0.188) & (0.080) & (0.052) & (0.067) & (0.035) \\ 
+  & & & & & & \\ 
+ BOOK\_VALUE & 2.503$^{***}$ & 3.913$^{***}$ & 2.855$^{***}$ & 0.346$^{***}$ & 2.754$^{***}$ & 0.638$^{***}$ \\ 
+  & (0.040) & (0.058) & (0.026) & (0.033) & (0.024) & (0.029) \\ 
+  & & & & & & \\ 
+ Constant & $-$168.568$^{**}$ &  & 364.656$^{***}$ &  & 276.349$^{**}$ &  \\ 
+  & (67.359) &  & (117.876) &  & (112.268) &  \\ 
+  & & & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 14,338 & 14,338 & 10,301 & 10,301 & 7,675 & 7,675 \\ 
+R$^{2}$ & 0.667 & 0.440 & 0.597 & 0.039 & 0.667 & 0.106 \\ 
+Adjusted R$^{2}$ & 0.667 & 0.317 & 0.597 & $-$0.300 & 0.667 & $-$0.361 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{6}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\begin{table}[!htbp] \centering
+\caption{}
+\label{3}
+\begin{tabular}{@{\extracolsep{5pt}}lcccc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{MKVAL} \\
+& OLS & FE & OLS & FE \\
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\
+\hline \\[-1.8ex]
+PROFIT & 3.375$^{***}$ & 1.645$^{***}$ & 6.768$^{***}$ & 3.260$^{***}$ \\
+& (0.064) & (0.054) & (0.109) & (0.100) \\
+& & & & \\
+BOOK\_VALUE & 3.054$^{***}$ & 2.012$^{***}$ & 2.872$^{***}$ & 2.011$^{***}$ \\
+& (0.020) & (0.024) & (0.020) & (0.024) \\
+& & & & \\
+XiNot0 & $-$698.103$^{***}$ & 19.984 & $-$171.717 & 256.808$^{**}$ \\
+& (149.295) & (128.972) & (145.775) & (128.514) \\
+& & & & \\
+PrXiNot0 & & & $-$4.842$^{***}$ & $-$2.105$^{***}$ \\
+& & & (0.128) & (0.110) \\
+& & & & \\
+Constant & 305.072$^{***}$ & & 140.453$^{**}$ & \\
+& (72.787) & & (70.882) & \\
+& & & & \\
+\hline \\[-1.8ex]
+Observations & 24,639 & 24,624 & 24,639 & 24,624 \\
+R$^{2}$ & 0.603 & 0.269 & 0.625 & 0.281 \\
+Adjusted R$^{2}$ & 0.603 & 0.178 & 0.625 & 0.191 \\
+\hline
+\hline \\[-1.8ex]
+\textit{Note:} & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{4} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{MKVAL} \\ 
+ & OLS & FE & OLS & FE \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
+\hline \\[-1.8ex] 
+ PROFIT & 3.395$^{***}$ & 1.641$^{***}$ & 13.488$^{***}$ & 8.821$^{***}$ \\ 
+  & (0.065) & (0.055) & (0.128) & (0.142) \\ 
+  & & & & \\ 
+ BOOK\_VALUE & 3.047$^{***}$ & 2.013$^{***}$ & 1.634$^{***}$ & 1.554$^{***}$ \\ 
+  & (0.019) & (0.024) & (0.023) & (0.024) \\ 
+  & & & & \\ 
+ Dum\_neg\_Prof & 142.728 & $-$75.871 & 585.519$^{***}$ & 386.602$^{***}$ \\ 
+  & (138.933) & (139.508) & (121.311) & (131.255) \\ 
+  & & & & \\ 
+ Prdum\_neg\_Prof &  &  & $-$13.400$^{***}$ & $-$8.544$^{***}$ \\ 
+  &  &  & (0.152) & (0.157) \\ 
+  & & & & \\ 
+ Constant & 106.565 &  & $-$206.241$^{***}$ &  \\ 
+  & (77.563) &  & (67.761) &  \\ 
+  & & & & \\ 
+\hline \\[-1.8ex] 
+Observations & 24,639 & 24,639 & 24,639 & 24,639 \\ 
+R$^{2}$ & 0.602 & 0.269 & 0.697 & 0.356 \\ 
+Adjusted R$^{2}$ & 0.602 & 0.178 & 0.697 & 0.275 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\begin{table}[!htbp] \centering
+\caption{}
+\label{5}
+\begin{tabular}{@{\extracolsep{5pt}}lcccc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+& \multicolumn{4}{c}{\textit{Dependent variable:}} \\
+\cline{2-5}
+\\[-1.8ex] & \multicolumn{4}{c}{MKVAL} \\
+& \multicolumn{2}{c}{regression with XRD} & \multicolumn{2}{c}{same data as XRD} \\
+& OLS & FE & OLS & FE \\
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\
+\hline \\[-1.8ex]
+PROFIT & 2.937$^{***}$ & 1.698$^{***}$ & 3.344$^{***}$ & 1.898$^{***}$ \\
+& (0.081) & (0.070) & (0.083) & (0.075) \\
+& & & & \\
+BOOK\_VALUE & 2.953$^{***}$ & 1.692$^{***}$ & 3.464$^{***}$ & 2.286$^{***}$ \\
+& (0.030) & (0.038) & (0.027) & (0.037) \\
+& & & & \\
+XRD & 9.210$^{***}$ & 21.327$^{***}$ & & \\
+& (0.274) & (0.500) & & \\
+& & & & \\
+Constant & 64.840 & & 367.907$^{***}$ & \\
+& (97.117) & & (100.449) & \\
+& & & & \\
+\hline \\[-1.8ex]
+Observations & 14,277 & 14,277 & 14,277 & 14,277 \\
+R$^{2}$ & 0.659 & 0.357 & 0.632 & 0.264 \\
+Adjusted R$^{2}$ & 0.659 & 0.268 & 0.632 & 0.162 \\
+\hline
+\hline \\[-1.8ex]
+\textit{Note:} & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\end{tabular}
+\end{table}
+
+
+\include{mean_mkval}
+
+\include{mean_profit}
+
+\include{mean_book_value}
+
+
+
+
+
+
+
+
+\end{document}
+
